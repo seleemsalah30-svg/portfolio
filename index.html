@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Seleem Salah Mohamed — Software Developer, AI Automation & Game Development Specialist." />
+  <title>Seleem Salah Mohamed | Portfolio</title>
+<link rel="stylesheet" href="style.css" />
+<style>
+:root{
+  --bg:#07080d;
+  --bg-soft:#0d1018;
+  --card:rgba(16,18,28,.72);
+  --card-solid:#10131d;
+  --text:#f4f6fb;
+  --muted:#a8afc0;
+  --line:rgba(255,255,255,.10);
+  --accent:#8b5cf6;
+  --accent-2:#22d3ee;
+  --accent-3:#f472b6;
+  --shadow:0 24px 70px rgba(0,0,0,.28);
+  --radius:24px;
+}
+html.light{
+  --bg:#f4f6fb;
+  --bg-soft:#ffffff;
+  --card:rgba(255,255,255,.80);
+  --card-solid:#ffffff;
+  --text:#121521;
+  --muted:#5f6676;
+  --line:rgba(18,21,33,.11);
+  --accent:#6d3ef2;
+  --accent-2:#0596ad;
+  --accent-3:#d94693;
+  --shadow:0 24px 70px rgba(20,25,50,.12);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  background:
+    radial-gradient(circle at 15% 10%, rgba(139,92,246,.14), transparent 25rem),
+    radial-gradient(circle at 90% 20%, rgba(34,211,238,.10), transparent 22rem),
+    var(--bg);
+  color:var(--text);
+  line-height:1.65;
+  overflow-x:hidden;
+}
+body:before{
+  content:"";position:fixed;inset:0;pointer-events:none;opacity:.25;
+  background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);
+  background-size:42px 42px;mask-image:linear-gradient(to bottom,black,transparent 75%);
+}
+a{color:inherit;text-decoration:none}
+button{font:inherit}
+.scroll-progress{position:fixed;left:0;top:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent-2),var(--accent-3));width:0;z-index:2000}
+.site-header{
+  position:fixed;top:14px;left:50%;transform:translateX(-50%);width:min(1180px,calc(100% - 28px));
+  padding:12px 14px;display:flex;align-items:center;gap:12px;z-index:1000;
+  background:rgba(8,10,16,.58);border:1px solid var(--line);backdrop-filter:blur(18px);border-radius:18px;
+}
+html.light .site-header{background:rgba(255,255,255,.78)}
+.brand{display:flex;align-items:center;gap:10px;font-family:"Space Grotesk",sans-serif;font-weight:700;letter-spacing:-.02em;padding:4px 8px}
+.brand-mark{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;color:#fff;background:linear-gradient(135deg,var(--accent),var(--accent-2));box-shadow:0 8px 25px rgba(139,92,246,.25)}
+.brand-text{font-size:1.05rem}.brand-text span{color:var(--accent-2)}
+.nav{display:flex;align-items:center;justify-content:center;gap:5px;flex:1}
+.nav a{padding:8px 9px;border-radius:10px;color:var(--muted);font-size:.79rem;transition:.25s}
+.nav a:hover,.nav a.active{color:var(--text);background:rgba(255,255,255,.06)}
+.theme-toggle,.menu-toggle{
+  border:1px solid var(--line);background:transparent;color:var(--text);cursor:pointer;border-radius:12px;
+}
+.theme-toggle{width:38px;height:38px}
+.menu-toggle{display:none;padding:9px}
+.menu-toggle span{display:block;width:19px;height:2px;background:var(--text);margin:3px 0;border-radius:2px}
+.section-shell{width:min(1180px,calc(100% - 36px));margin:0 auto}
+.section{padding:110px 0}
+.hero{min-height:100vh;display:grid;grid-template-columns:1.07fr .93fr;align-items:center;gap:60px;padding-top:120px}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;color:var(--muted);font-size:.85rem;margin-bottom:18px}
+.pulse-dot{width:8px;height:8px;border-radius:50%;background:#5eead4;box-shadow:0 0 0 6px rgba(94,234,212,.10);animation:pulse 1.8s infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 11px rgba(94,234,212,0)}}
+.hero h1,.section-heading h2{font-family:"Space Grotesk",sans-serif;letter-spacing:-.045em;line-height:1.02}
+.hero h1{font-size:clamp(3rem,6vw,6rem);max-width:760px}
+.hero h1 span,.section-heading h2 span{background:linear-gradient(90deg,var(--accent),var(--accent-2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-role{font-family:"Space Grotesk";font-size:1.3rem;font-weight:700;margin-top:22px;min-height:33px}
+.hero-description{color:var(--muted);font-size:1.04rem;max-width:650px;margin-top:14px}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin:30px 0 22px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;border-radius:13px;padding:13px 18px;border:1px solid var(--line);font-weight:700;font-size:.9rem;cursor:pointer;transition:.25s}
+.btn:hover{transform:translateY(-2px);border-color:rgba(255,255,255,.20)}
+.btn-primary{background:linear-gradient(135deg,var(--accent),#6845e9);color:#fff;box-shadow:0 14px 36px rgba(109,62,242,.24)}
+.btn-secondary{background:rgba(255,255,255,.03)}
+.btn-mini{padding:10px 13px;font-size:.78rem}
+.hero-meta{display:flex;flex-wrap:wrap;gap:12px 18px;color:var(--muted);font-size:.78rem}
+.hero-visual{min-height:500px;display:grid;place-items:center;position:relative}
+.code-card{
+  width:min(570px,100%);padding:18px;border:1px solid var(--line);border-radius:24px;background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.025));
+  box-shadow:var(--shadow);backdrop-filter:blur(12px);transform:perspective(1100px) rotateY(-7deg) rotateX(3deg);transition:transform .7s ease;
+}
+.hero-visual:hover .code-card{transform:perspective(1100px) rotateY(0deg) rotateX(0deg) translateY(-5px)}
+.code-top{display:flex;align-items:center;gap:7px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.code-top>span{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.30)}
+.code-top small{margin-left:auto;color:var(--muted);font-size:.7rem}
+pre{padding:24px 8px 8px;overflow:auto;color:#dae0ec;font:500 .92rem/1.9 ui-monospace,SFMono-Regular,Menlo,monospace}
+.k{color:#c084fc}.p{color:#67e8f9}.s{color:#86efac}
+.orb{position:absolute;border-radius:50%;filter:blur(1px);z-index:-1}
+.orb-one{width:270px;height:270px;background:radial-gradient(circle,rgba(139,92,246,.28),transparent 68%);top:8%;right:3%}
+.orb-two{width:220px;height:220px;background:radial-gradient(circle,rgba(34,211,238,.22),transparent 68%);bottom:7%;left:0}
+.floating-chip{position:absolute;padding:10px 13px;border:1px solid var(--line);background:rgba(10,12,20,.72);backdrop-filter:blur(12px);border-radius:12px;font-size:.78rem;font-weight:800;box-shadow:var(--shadow)}
+html.light .floating-chip{background:rgba(255,255,255,.82)}
+.chip-one{top:16%;left:1%;animation:float 6s ease-in-out infinite}.chip-two{right:3%;bottom:22%;animation:float 7s ease-in-out .7s infinite}.chip-three{left:12%;bottom:10%;animation:float 7s ease-in-out 1.3s infinite}
+@keyframes float{50%{transform:translateY(-11px)}}
+.section-heading{max-width:850px;margin-bottom:34px}.section-kicker{display:block;color:var(--accent-2);font-size:.73rem;letter-spacing:.18em;font-weight:800;margin-bottom:10px}
+.section-heading h2{font-size:clamp(2rem,4vw,3.6rem)}
+.section-note{color:var(--muted);margin-top:12px;max-width:760px;font-size:.9rem}
+.about-grid{display:grid;grid-template-columns:1.35fr .65fr;gap:22px}
+.glass-card{border:1px solid var(--line);background:var(--card);backdrop-filter:blur(16px);border-radius:var(--radius);box-shadow:var(--shadow)}
+.about-card{padding:32px}.about-card .lead{font-size:1.22rem;font-weight:600;line-height:1.6;margin-bottom:18px}.about-card p+p{margin-top:14px;color:var(--muted)}
+.facts-panel{display:grid;grid-template-columns:1fr 1fr;gap:12px}.fact{border:1px solid var(--line);border-radius:18px;padding:22px;background:rgba(255,255,255,.025);display:flex;flex-direction:column;gap:4px}.fact strong{font-family:"Space Grotesk";font-size:1.7rem}.fact span{font-size:.76rem;color:var(--muted)}
+.timeline{position:relative;padding-left:28px}.timeline:before{content:"";position:absolute;left:6px;top:0;bottom:0;width:1px;background:linear-gradient(var(--accent),var(--accent-2),transparent)}
+.timeline-item{position:relative;margin-bottom:20px}.timeline-dot{position:absolute;left:-28px;top:28px;width:13px;height:13px;border-radius:50%;background:var(--accent-2);box-shadow:0 0 0 7px rgba(34,211,238,.10)}
+.timeline-card{padding:26px}.timeline-date{color:var(--accent-2);font-size:.74rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em}.timeline-card h3{font:700 1.25rem "Space Grotesk";margin:8px 0 2px}.timeline-card h4{font-size:.87rem;color:var(--muted);margin-bottom:10px;font-weight:600}.timeline-card p{color:var(--muted);font-size:.9rem}
+.skills-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.skill-card{padding:22px}.skill-icon{font-size:1.6rem;margin-bottom:17px}.skill-card h3{font:700 1.05rem "Space Grotesk";margin-bottom:7px}.skill-card p{color:var(--muted);font-size:.82rem;min-height:80px}.skill-line{height:5px;background:rgba(255,255,255,.07);border-radius:99px;margin-top:18px;overflow:hidden}.skill-line span{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,var(--accent),var(--accent-2));animation:grow 1.4s ease both}
+@keyframes grow{from{width:0!important}}
+.language-row{display:flex;gap:12px;margin-top:16px}.language-row>div{padding:14px 16px;border:1px solid var(--line);border-radius:14px;display:flex;gap:12px;align-items:baseline}.language-row span{font-weight:700}.language-row small{color:var(--muted)}
+.experience-card{display:grid;grid-template-columns:150px 1fr;gap:26px;padding:28px;align-items:center}.experience-badge{height:120px;display:grid;place-items:center;border-radius:22px;background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#fff;font:800 2.2rem "Space Grotesk";box-shadow:0 20px 40px rgba(34,211,238,.10)}
+.experience-top{display:flex;justify-content:space-between;gap:16px}.experience-content h3{font:700 1.4rem "Space Grotesk";margin:5px 0}.experience-content p{color:var(--muted);font-size:.92rem;max-width:800px}.status-pill{align-self:flex-start;padding:6px 10px;border:1px solid rgba(94,234,212,.25);color:#5eead4;background:rgba(94,234,212,.07);border-radius:99px;font-size:.7rem;font-weight:800}.tag-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}.tag-row span{border:1px solid var(--line);border-radius:999px;padding:6px 10px;font-size:.7rem;color:var(--muted)}
+.services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.service{padding:24px;min-height:270px;position:relative;overflow:hidden;transition:.3s}.service:after{content:"";position:absolute;width:120px;height:120px;border-radius:50%;right:-50px;top:-50px;background:radial-gradient(circle,rgba(139,92,246,.18),transparent 70%)}.service:hover{transform:translateY(-6px);border-color:rgba(139,92,246,.35)}.service-number{color:var(--accent-2);font:700 .8rem "Space Grotesk";margin-bottom:40px}.service h3{font:700 1.16rem "Space Grotesk";margin-bottom:10px}.service p{font-size:.83rem;color:var(--muted);min-height:76px}.text-btn{border:0;background:none;color:var(--text);font-size:.78rem;font-weight:800;cursor:pointer;padding:0}
+.projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.project-card{overflow:hidden;border:1px solid var(--line);border-radius:var(--radius);background:var(--card);transition:.3s}.project-card:hover{transform:translateY(-6px);box-shadow:var(--shadow)}.project-art{height:180px;display:flex;align-items:flex-end;justify-content:space-between;padding:20px;border-bottom:1px solid var(--line)}.project-art span{font:700 3rem "Space Grotesk";opacity:.8}.project-art strong{font-size:.66rem;letter-spacing:.2em;color:var(--muted)}.project-body{padding:22px}.project-body h3{font:700 1.12rem "Space Grotesk";margin-bottom:7px}.project-body p{font-size:.83rem;color:var(--muted);min-height:65px}
+.achievements-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.achievement{padding:24px;display:flex;gap:16px;align-items:flex-start}.achievement-icon{font-size:1.8rem}.achievement h3{font:700 1.05rem "Space Grotesk";margin-bottom:5px}.achievement p{color:var(--muted);font-size:.8rem;line-height:1.55}
+.contact-section{padding-top:50px}.contact-card{padding:52px 42px;border-radius:30px;border:1px solid var(--line);background:linear-gradient(135deg,rgba(139,92,246,.16),rgba(34,211,238,.08));text-align:center;box-shadow:var(--shadow)}.contact-card h2{font:700 clamp(2.2rem,4vw,4rem) "Space Grotesk";line-height:1.05;letter-spacing:-.04em}.contact-card h2 span{color:var(--accent-2)}.contact-card p{color:var(--muted);max-width:680px;margin:13px auto 22px}.contact-actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}.contact-line{color:var(--muted);font-size:.76rem;margin-top:22px}
+.footer{padding:34px 18px;text-align:center;color:var(--muted);font-size:.75rem;border-top:1px solid var(--line)}
+.modal{position:fixed;inset:0;display:none;place-items:center;z-index:3000}.modal.open{display:grid}.modal-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.62);backdrop-filter:blur(5px)}.modal-dialog{position:relative;width:min(640px,calc(100% - 30px));max-height:88vh;overflow-y:auto;padding:30px;z-index:2;animation:modalIn .25s ease}.modal-dialog h3{font:700 1.55rem "Space Grotesk";margin:6px 0 12px}.modal-dialog p{color:var(--muted);font-size:.92rem}.modal-close{position:absolute;right:16px;top:12px;width:34px;height:34px;border:1px solid var(--line);border-radius:10px;background:transparent;color:var(--text);font-size:1.5rem;cursor:pointer}
+@keyframes modalIn{from{opacity:0;transform:translateY(10px) scale(.98)}to{opacity:1;transform:none}}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}.reveal.visible{opacity:1;transform:none}.delay-1{transition-delay:.08s}.delay-2{transition-delay:.16s}.delay-3{transition-delay:.24s}
+@media(max-width:1050px){.nav{gap:0}.nav a{font-size:.69rem;padding:8px 6px}.skills-grid,.services-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:820px){
+  .site-header{top:10px}.nav{position:absolute;top:64px;left:0;right:0;display:none;flex-direction:column;align-items:stretch;padding:10px;background:rgba(10,12,20,.94);border:1px solid var(--line);border-radius:16px}.nav.open{display:flex}.nav a{font-size:.84rem;padding:11px 12px}.menu-toggle{display:block;order:3}.theme-toggle{margin-left:auto}.hero{grid-template-columns:1fr;gap:30px;padding-top:130px}.hero-visual{min-height:390px}.about-grid,.experience-card{grid-template-columns:1fr}.experience-badge{height:90px}.projects-grid,.achievements-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:580px){
+  .section{padding:82px 0}.hero h1{font-size:2.9rem}.hero-description{font-size:.95rem}.hero-meta{gap:8px 12px}.skills-grid,.services-grid,.projects-grid,.achievements-grid{grid-template-columns:1fr}.facts-panel{grid-template-columns:1fr 1fr}.language-row{flex-direction:column}.experience-top{flex-direction:column}.contact-card{padding:40px 20px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal,.delay-1,.delay-2,.delay-3,.pulse-dot,.floating-chip{animation:none!important;transition:none!important}}
+
+.profile-frame{
+  width:min(390px,82vw);
+  aspect-ratio:1/1.08;
+  border-radius:42px;
+  position:relative;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.16);
+  background:linear-gradient(145deg,rgba(139,92,246,.16),rgba(34,211,238,.08));
+  box-shadow:0 30px 90px rgba(0,0,0,.35);
+  transform:rotate(2deg);
+  transition:.5s;
+}
+.hero-visual:hover .profile-frame{transform:rotate(0deg) translateY(-5px)}
+.profile-frame:before{
+  content:"";
+  position:absolute;
+  inset:12px;
+  border-radius:33px;
+  border:1px dashed rgba(255,255,255,.14);
+  z-index:3;
+  pointer-events:none;
+}
+.profile-frame img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  object-position:bottom center;
+  display:block;
+  z-index:2;
+  transition:transform .5s ease;
+}
+.hero-visual:hover .profile-frame img{
+  transform:scale(1.03);
+}
+.profile-orbit{position:absolute;border-radius:50%;border:1px solid rgba(255,255,255,.08);pointer-events:none}
+.orbit-a{width:510px;height:510px;animation:spin 20s linear infinite}
+.orbit-b{width:430px;height:430px;animation:spin 15s linear infinite reverse}
+@keyframes spin{to{transform:rotate(360deg)}}
+.chip-four{right:10%;top:10%;animation:float 6.5s ease-in-out 1s infinite}
+.projects-real{grid-template-columns:repeat(3,1fr)}
+.project-type{font-size:.64rem;font-weight:800;letter-spacing:.14em;color:var(--accent-2);margin-bottom:8px}
+.tag-row.compact{margin-top:12px;margin-bottom:16px}
+.tag-row.compact span{font-size:.64rem;padding:5px 9px}
+
+/* Project Art Gradients */
+.project-art-game{background:radial-gradient(circle at 25% 25%,rgba(139,92,246,.38),transparent 35%),linear-gradient(135deg,#111323,#090b13)}
+.project-art-mobile{background:radial-gradient(circle at 75% 25%,rgba(34,211,238,.32),transparent 36%),linear-gradient(135deg,#0d1820,#090b13)}
+.project-art-cloud{background:radial-gradient(circle at 50% 80%,rgba(244,114,182,.24),transparent 38%),linear-gradient(135deg,#15111b,#090b13)}
+.project-art-analytics{background:radial-gradient(circle at 60% 30%,rgba(16,185,129,.32),transparent 38%),linear-gradient(135deg,#0a1b18,#090b13)}
+.project-art-pipeline{background:radial-gradient(circle at 30% 70%,rgba(245,158,11,.32),transparent 38%),linear-gradient(135deg,#1c150c,#090b13)}
+.project-art-agent{background:radial-gradient(circle at 70% 30%,rgba(99,102,241,.38),transparent 38%),linear-gradient(135deg,#131128,#090b13)}
+
+.modal-info-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:20px 0}
+.modal-info-grid>div,.modal-block{border:1px solid var(--line);border-radius:15px;padding:15px;background:rgba(255,255,255,.025)}
+.modal-info-grid small,.modal-block small{display:block;color:var(--accent-2);font-size:.64rem;font-weight:800;letter-spacing:.12em;margin-bottom:6px}
+.modal-info-grid strong{display:block;font-size:.82rem;line-height:1.55}
+.modal-block{margin-top:12px}
+.modal-block p{font-size:.82rem;line-height:1.6}
+@media(max-width:820px){.projects-real{grid-template-columns:1fr 1fr}}
+@media(max-width:580px){.projects-real{grid-template-columns:1fr}.modal-info-grid{grid-template-columns:1fr}.profile-frame{width:min(340px,86vw)}}
+</style>
+</head>
+<body>
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <header class="site-header" id="siteHeader">
+    <a class="brand" href="#home" aria-label="Seleem Salah Mohamed home">
+      <span class="brand-mark">S</span>
+      <span class="brand-text">Seleem Salah Mohamed<span>.</span></span>
+    </a>
+
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="nav" id="mainNav">
+      <a href="#home">Cover</a>
+      <a href="#about">About</a>
+      <a href="#education">Education</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#services">Services</a>
+      <a href="#projects">Projects</a>
+      <a href="#achievements">Achievements</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+      <span id="themeIcon">☾</span>
+    </button>
+  </header>
+
+  <main>
+    <section class="hero section-shell" id="home">
+      <div class="hero-copy reveal">
+        <p class="eyebrow"><span class="pulse-dot"></span> Available for opportunities</p>
+        <h1>Building digital experiences with <span>code, AI & games.</span></h1>
+        <p class="hero-role" id="typingTarget">Software Developer</p>
+        <p class="hero-description">
+          Helping businesses and teams eliminate repetitive work and build engaging digital experiences through intelligent AI workflows, robust software, and interactive games.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#projects">Explore my work <span>↗</span></a>
+          <a class="btn btn-secondary" href="Seleem_Salah_Mohamed_CV.docx" download>Download CV <span>↓</span></a>
+        </div>
+
+        <div class="hero-meta">
+          <span>📍 Alexandria, Egypt</span>
+          <span>✉ slimesalah30@gmail.com</span>
+          <span>☏ 01201024512</span>
+        </div>
+      </div>
+
+      <div class="hero-visual reveal delay-2">
+        <div class="profile-orbit orbit-a"></div>
+        <div class="profile-orbit orbit-b"></div>
+        <div class="profile-frame">
+          <img src="profile.jpg" alt="Seleem Salah Mohamed" loading="eager" />
+        </div>
+        <div class="floating-chip chip-one">Unity</div>
+        <div class="floating-chip chip-two">Flutter</div>
+        <div class="floating-chip chip-three">AI / n8n</div>
+        <div class="floating-chip chip-four">C#</div>
+      </div>
+    </section>
+
+    <section class="section-shell section" id="about">
+      <div class="section-heading reveal">
+        <span class="section-kicker">01 / ABOUT</span>
+        <h2>Curious mind. <span>Practical builder.</span></h2>
+      </div>
+      <div class="about-grid">
+        <article class="glass-card about-card reveal">
+          <p class="lead">
+            I’m an ambitious Computer Science student passionate about game development and
+            leveraging artificial intelligence to automate workflows and optimize code generation.
+          </p>
+          <p>
+            My academic background includes mobile application development and large-scale databases,
+            while my hands-on focus includes Unity, Finite State Machines, AI tools, and n8n-based automation.
+          </p>
+          <p>
+            I enjoy analytical problem solving and turning ideas into working, testable digital solutions,
+            whether in a team environment or through freelance work.
+          </p>
+        </article>
+
+        <aside class="facts-panel reveal delay-1">
+          <div class="fact"><strong>CS</strong><span>Computer Science</span></div>
+          <div class="fact"><strong>AI</strong><span>Workflow Automation</span></div>
+          <div class="fact"><strong>3D/2D</strong><span>Unity Game Development</span></div>
+          <div class="fact"><strong>∞</strong><span>Always learning</span></div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Education Section -->
+    <section class="section-shell section" id="education">
+      <div class="section-heading reveal">
+        <span class="section-kicker">02 / EDUCATION</span>
+        <h2>A foundation built for <span>real projects.</span></h2>
+      </div>
+      <div class="timeline">
+        <article class="timeline-item reveal">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card glass-card">
+            <span class="timeline-date">Bachelor’s Degree</span>
+            <h3>Computer Science</h3>
+            <h4>Faculty of Science, Alexandria University</h4>
+            <p>Key coursework: Mobile Application Development, Large-scale Databases, Algorithms, and Software Engineering.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section-shell section" id="skills">
+      <div class="section-heading reveal">
+        <span class="section-kicker">03 / SKILLS</span>
+        <h2>Tools I use to <span>ship ideas.</span></h2>
+      </div>
+
+      <div class="skills-grid">
+        <article class="glass-card skill-card reveal">
+          <div class="skill-icon">🎮</div>
+          <h3>Game Development</h3>
+          <p>Unity · 2D/3D environments · FSM scripting</p>
+          <div class="skill-line"><span style="width: 90%"></span></div>
+        </article>
+
+        <article class="glass-card skill-card reveal delay-1">
+          <div class="skill-icon">⚙</div>
+          <h3>AI & Automation</h3>
+          <p>AI-assisted code generation · n8n · workflow automation</p>
+          <div class="skill-line"><span style="width: 86%"></span></div>
+        </article>
+
+        <article class="glass-card skill-card reveal delay-2">
+          <div class="skill-icon">📱</div>
+          <h3>Software Development</h3>
+          <p>Mobile application development · database management</p>
+          <div class="skill-line"><span style="width: 82%"></span></div>
+        </article>
+
+        <article class="glass-card skill-card reveal delay-3">
+          <div class="skill-icon">🧠</div>
+          <h3>Problem Solving</h3>
+          <p>Analytical thinking · logical reasoning · project execution · fast learning</p>
+          <div class="skill-line"><span style="width: 92%"></span></div>
+        </article>
+      </div>
+
+      <div class="language-row reveal">
+        <div><span>Arabic</span><small>Native</small></div>
+        <div><span>English</span><small>Very Good</small></div>
+      </div>
+    </section>
+
+    <section class="section-shell section" id="experience">
+      <div class="section-heading reveal">
+        <span class="section-kicker">04 / EXPERIENCE</span>
+        <h2>Learning through <span>hands-on execution.</span></h2>
+      </div>
+      <div class="experience-card glass-card reveal">
+        <div class="experience-badge">DEPI</div>
+        <div class="experience-content">
+          <div class="experience-top">
+            <div>
+              <span class="timeline-date">Summer 2026 — Present</span>
+              <h3>AI Automation Workflow Trainee</h3>
+            </div>
+            <span class="status-pill">Current</span>
+          </div>
+          <p>
+            Professional hands-on training focused on designing workflows and automating business processes,
+            including practical work with n8n and AI-assisted development.
+          </p>
+          <div class="tag-row">
+            <span>Workflow Design</span><span>n8n</span><span>AI Tools</span><span>Automation</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-shell section" id="services">
+      <div class="section-heading reveal">
+        <span class="section-kicker">05 / SERVICES</span>
+        <h2>What I can <span>build with you.</span></h2>
+        <p class="section-note">Services here are mapped from the technical capabilities listed in the CV.</p>
+      </div>
+
+      <div class="services-grid">
+        <article class="service glass-card reveal" data-service="game">
+          <div class="service-number">01</div>
+          <h3>Game Development</h3>
+          <p>Unity-based 2D/3D development and FSM-oriented gameplay logic.</p>
+          <button class="text-btn service-open">View focus ↗</button>
+        </article>
+        <article class="service glass-card reveal delay-1" data-service="automation">
+          <div class="service-number">02</div>
+          <h3>AI Workflow Automation</h3>
+          <p>AI-assisted workflows and repetitive-task automation using tools such as n8n.</p>
+          <button class="text-btn service-open">View focus ↗</button>
+        </article>
+        <article class="service glass-card reveal delay-2" data-service="mobile">
+          <div class="service-number">03</div>
+          <h3>Mobile App Development</h3>
+          <p>Application development backed by a Computer Science academic foundation.</p>
+          <button class="text-btn service-open">View focus ↗</button>
+        </article>
+        <article class="service glass-card reveal delay-3" data-service="database">
+          <div class="service-number">04</div>
+          <h3>Database Solutions</h3>
+          <p>Database management and solutions for data-heavy application needs.</p>
+          <button class="text-btn service-open">View focus ↗</button>
+        </article>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="section-shell section" id="projects">
+      <div class="section-heading reveal">
+        <span class="section-kicker">06 / PROJECTS</span>
+        <h2>Selected work & <span>technical case studies.</span></h2>
+        <p class="section-note">
+          Featured projects spanning game development, mobile apps, database architecture, and production-ready AI automation workflows.
+        </p>
+      </div>
+
+      <div class="projects-grid projects-real">
+
+        <!-- Project 1: Game Development -->
+        <article class="project-card reveal">
+          <div class="project-art project-art-game">
+            <span>01</span>
+            <strong>ACTION · ADVENTURE</strong>
+          </div>
+          <div class="project-body">
+            <div class="project-type">GAME DEVELOPMENT</div>
+            <h3>Shadows of Past</h3>
+            <p>3D action-adventure game focused on dynamic NPC artificial intelligence and core gameplay mechanics.</p>
+            <div class="tag-row compact">
+              <span>Unity</span><span>C#</span><span>NavMesh</span><span>State Pattern</span>
+            </div>
+            <button class="btn btn-mini project-open"
+              data-title="Shadows of Past — Action-Adventure Game"
+              data-kicker="PROJECT 01 · GAME DEVELOPMENT"
+              data-description="A 3D action-adventure game focusing on dynamic NPC artificial intelligence and core game mechanics."
+              data-role="Gameplay & AI Programmer"
+              data-stack="Unity, C#, NavMesh Navigation, State Pattern"
+              data-architecture="Finite State Machine (FSM): Architected a modular FSM for NPC enemy behavior with clean transitions among Idle, Patrol, Pursue, and Attack. AI Pathfinding: Implemented target pursuit and tactical positioning using Unity’s NavMesh system. Core Game Loop: Built responsive combat and player controller mechanics alongside scene transitions and game lifecycle management."
+              data-challenge="Ensuring smooth and bug-free state transitions during edge cases, such as the player breaking line-of-sight during an active pursuit, by introducing alert cooling timers and deterministic state evaluation.">View case study ↗</button>
+          </div>
+        </article>
+
+        <!-- Project 2: Mobile App -->
+        <article class="project-card reveal delay-1">
+          <div class="project-art project-art-mobile">
+            <span>02</span>
+            <strong>MOBILE · DATA · API</strong>
+          </div>
+          <div class="project-body">
+            <div class="project-type">MOBILE APPLICATION</div>
+            <h3>Sports News Mobile Application</h3>
+            <p>Cross-platform sports coverage with real-time feeds and robust offline accessibility.</p>
+            <div class="tag-row compact">
+              <span>Flutter</span><span>Dart</span><span>SQLite</span><span>REST API</span>
+            </div>
+            <button class="btn btn-mini project-open"
+              data-title="Sports News Mobile Application"
+              data-kicker="PROJECT 02 · MOBILE APPLICATION"
+              data-description="A cross-platform mobile application providing real-time sports coverage with robust offline accessibility."
+              data-role="Mobile Application Developer"
+              data-stack="Flutter, Dart, SQLite (sqflite), REST APIs"
+              data-architecture="Local Data Persistence: Designed and integrated a local SQLite database schema using sqflite to cache news feeds, enabling offline reading and fast startup times. Data Modeling & Architecture: Developed strongly typed article models and repositories to decouple networking/storage logic from the presentation layer. Responsive UI/UX: Crafted fluid, adaptive screens with seamless loading, caching states, and error-handling flows."
+              data-challenge="Handling efficient database reads/writes during high-frequency feed updates without blocking the main UI thread, solved by optimizing indexed queries and local cache synchronization.">View case study ↗</button>
+          </div>
+        </article>
+
+        <!-- Project 3: Cloud Infrastructure -->
+        <article class="project-card reveal delay-2">
+          <div class="project-art project-art-cloud">
+            <span>03</span>
+            <strong>CLOUD · DATABASE · DEVOPS</strong>
+          </div>
+          <div class="project-body">
+            <div class="project-type">DATA INFRASTRUCTURE</div>
+            <h3>Cloud & Database Infrastructure Management</h3>
+            <p>Containerized data-processing environment combining relational and non-relational architectures.</p>
+            <div class="tag-row compact">
+              <span>Docker Compose</span><span>SQL</span><span>BigQuery</span><span>MongoDB</span>
+            </div>
+            <button class="btn btn-mini project-open"
+              data-title="Cloud & Database Infrastructure Management"
+              data-kicker="PROJECT 03 · CLOUD & DATABASE"
+              data-description="A containerized data processing environment integrating relational and non-relational database architectures."
+              data-role="Database & DevOps Contributor"
+              data-stack="Docker Compose, SQL, Google BigQuery, MongoDB"
+              data-architecture="Containerization: Configured a reproducible multi-service environment via Docker Compose to streamline service spinning and development consistency. Data Architecture & Querying: Designed schemas and executed complex queries across relational (SQL) and analytical/NoSQL stores (BigQuery / MongoDB). Documentation & Reproducibility: Documented performance metrics, deployment procedures, and query execution plans for team reproducibility."
+              data-challenge="Managing environment variables and network isolation between containers to ensure seamless and secure communication between the database services and querying clients.">View case study ↗</button>
+          </div>
+        </article>
+
+        <!-- Project 4: E-Commerce Analytics -->
+        <article class="project-card reveal">
+          <div class="project-art project-art-analytics">
+            <span>04</span>
+            <strong>DATA · ANALYTICS · SQL</strong>
+          </div>
+          <div class="project-body">
+            <div class="project-type">DATA ARCHITECTURE & ANALYTICS</div>
+            <h3>E-Commerce Data Analytics & Architecture</h3>
+            <p>Comprehensive relational schema and analytical reporting pipeline delivering retail business insights.</p>
+            <div class="tag-row compact">
+              <span>SQL</span><span>RDBMS</span><span>LaTeX</span><span>Beamer</span>
+            </div>
+            <button class="btn btn-mini project-open"
+              data-title="E-Commerce Data Analytics & Architecture"
+              data-kicker="PROJECT 04 · DATA ANALYTICS & ARCHITECTURE"
+              data-description="A comprehensive relational database design and analytical reporting pipeline to extract actionable business insights from retail operations."
+              data-role="Database Designer & Data Analyst"
+              data-stack="SQL, Relational Database Management Systems (RDBMS), LaTeX, Beamer"
+              data-architecture="Schema Design & Normalization: Architected an optimized relational schema covering customers, inventory, orders, and customer feedback to eliminate redundancy and maintain referential integrity. Analytical Querying: Engineered advanced SQL queries to evaluate key business metrics, including customer acquisition rates, inventory turnover, pricing efficiency, and review sentiment trends. Technical Reporting & Presentation: Formatted detailed analytical documentation and high-impact presentation decks using LaTeX and Beamer with custom data-visualization tables and execution breakdowns."
+              data-challenge="Optimizing multi-table analytical joins and aggregations across high-volume transaction and feedback tables to deliver sub-second query performance without bottlenecking reporting pipelines.">View case study ↗</button>
+          </div>
+        </article>
+
+        <!-- Project 5: AI Content Generation Pipeline -->
+        <article class="project-card reveal delay-1">
+          <div class="project-art project-art-pipeline">
+            <span>05</span>
+            <strong>AI · PIPELINE · AUTOMATION</strong>
+          </div>
+          <div class="project-body">
+            <div class="project-type">AI AUTOMATION & WORKFLOWS</div>
+            <h3>Automated AI Content Generation & Distribution Pipeline</h3>
+            <p>Decoupled publishing pipeline scheduling ideation, generating content via LLMs, and dispatching drafts.</p>
+            <div class="tag-row compact">
+              <span>n8n</span><span>LLMs</span><span>Google Sheets</span><span>Gmail API</span>
+            </div>
+            <button class="btn btn-mini project-open"
+              data-title="Automated AI Content Generation & Distribution Pipeline"
+              data-kicker="PROJECT 05 · AI AUTOMATION WORKFLOW"
+              data-description="A decoupled, automated end-to-end publishing pipeline that schedules ideation, generates engaging social media content via LLMs, manages content lifecycle states, and dispatches automated publication drafts."
+              data-role="AI Automation Engineer & Workflow Architect"
+              data-stack="n8n, Large Language Models (OpenAI / Google Gemini), Google Sheets API, Gmail API, REST APIs, JSON"
+              data-architecture="Decoupled Producer-Consumer Pipeline: Architected a dual-stage workflow separating topic ideation from content creation and distribution, using Google Sheets as a persistent queue and state store to decouple scheduling intervals. LLM Prompt Engineering & Output Orchestration: Engineered tailored system and user prompts to generate viral social media copy featuring high-converting hooks, engaging storytelling, interactive calls-to-action (CTAs), and relevant hashtags. Lifecycle State Management & FIFO Processing: Configured dynamic querying to fetch and process single pending items sequentially, preventing content flooding and updating row states (Pending ➔ Published) alongside execution timestamps and generated copy. Automated Notification & Dispatching: Integrated automated email dispatching via the Gmail API to deliver finalized post drafts directly to stakeholders for review and immediate posting."
+              data-challenge="Refactored an initial complex array-splitting and field-mapping architecture (Split Out / Edit Fields) into a streamlined, lightweight pipeline with single-item state synchronization. This eliminated execution overhead, prevented duplicate posts across scheduled runs, and ensured zero payload drop between LLM responses and Google Sheets.">View case study ↗</button>
+          </div>
+        </article>
+
+        <!-- Project 6: Autonomous Calendar Agent -->
+        <article class="project-card reveal delay-2">
+          <div class="project-art project-art-agent">
+            <span>06</span>
+            <strong>AI AGENT · TOOL CALLING · AUTOMATION</strong>
+          </div>
+          <div class="project-body">
+            <div class="project-type">AI AGENTS & CONVERSATIONAL AI</div>
+            <h3>Autonomous AI Calendar Assistant & Scheduling Agent</h3>
+            <p>Conversational agent executing real-time schedule queries and autonomous event creation via tool calling.</p>
+            <div class="tag-row compact">
+              <span>n8n</span><span>Tool Calling</span><span>Google Calendar</span><span>Memory</span>
+            </div>
+            <button class="btn btn-mini project-open"
+              data-title="Autonomous AI Calendar Assistant & Scheduling Agent"
+              data-kicker="PROJECT 06 · AI AGENT WORKFLOW"
+              data-description="An intelligent, conversational agent workflow capable of real-time schedule querying and autonomous event creation via natural language processing and deterministic tool calling."
+              data-role="AI Automation Engineer & Workflow Architect"
+              data-stack="n8n, OpenRouter API, LLMs (Tool Calling / Function Calling), Google Calendar API, LangChain Memory, JSON, ISO 8601"
+              data-architecture="Autonomous Agent Orchestration: Designed an end-to-end conversational workflow using the n8n AI Agent framework, enabling intent detection to dynamically route between read operations (getAll: event) and write operations (create: event). Bi-Directional Calendar Tooling: Configured and exposed discrete Google Calendar API capabilities as agentic tools, allowing the model to perform scoped event queries and schedule appointments without hardcoded routing logic. Context & Conversational State Persistence: Integrated buffer memory (Simple Memory) and optimized context-window token usage (~2.5k tokens/turn) to preserve multi-turn dialogue continuity across user queries and scheduling confirmations. System Prompt & Parameter Schemas: Engineered strict system instructions and tool parameter descriptions to enforce reliable tool calling, handling relative date calculations (today, tomorrow) and dynamic metadata extraction."
+              data-challenge="Timezone Offset Normalization: Resolved a critical 7-hour scheduling skew caused by mismatched default client environments by enforcing strict ISO 8601 timestamp generation with local Egyptian timezone offsets (+03:00 / Africa/Cairo) directly in prompt constraints and node configurations. API Parameter Validation: Overcame Google Calendar API invalid parameter faults by replacing ambiguous dynamic AI evaluation bindings with static, verified primary calendar target identifiers and strict schema mappings.">View case study ↗</button>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Achievements & Milestones Section -->
+    <section class="section-shell section" id="achievements">
+      <div class="section-heading reveal">
+        <span class="section-kicker">07 / ACHIEVEMENTS & MILESTONES</span>
+        <h2>Programs, Certifications & <span>Milestones.</span></h2>
+        <p class="section-note">
+          International academic programs, national tech initiatives, and production-grade automation systems.
+        </p>
+      </div>
+
+      <div class="achievements-grid">
+        <article class="achievement glass-card reveal">
+          <span class="achievement-icon">🏛️</span>
+          <div>
+            <h3>GCI World AI Course</h3>
+            <p><strong>The University of Tokyo</strong> · Enrolled in the Global Consumer Intelligence program via Omnicampus, focusing on advanced data science, machine learning models, and real-world consumer behavior analytics.</p>
+          </div>
+        </article>
+
+        <article class="achievement glass-card reveal delay-1">
+          <span class="achievement-icon">📜</span>
+          <div>
+            <h3>DEPI AI Automation Trainee</h3>
+            <p><strong>Digital Egypt Pioneers Initiative (MCIT)</strong> · Intensive hands-on training specializing in AI Automation Workflows, n8n orchestration, LLM application pipelines, and enterprise process automation.</p>
+          </div>
+        </article>
+
+        <article class="achievement glass-card reveal delay-2">
+          <span class="achievement-icon">🚀</span>
+          <div>
+            <h3>Production Automation Deployments</h3>
+            <p><strong>Autonomous Agent Pipelines</strong> · Successfully built and deployed decoupled AI-driven content generation pipelines and conversational calendar scheduling agents with deterministic tool calling.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section-shell section contact-section" id="contact">
+      <div class="contact-card reveal">
+        <span class="section-kicker">08 / CONTACT</span>
+        <h2>Let’s build something <span>useful.</span></h2>
+        <p>Open to internships, freelance work, collaborative projects, and software development opportunities.</p>
+        <div class="contact-actions">
+          <a class="btn btn-primary" href="mailto:slimesalah30@gmail.com">Email me ↗</a>
+          <a class="btn btn-secondary" href="tel:01201024512">Call me ↗</a>
+        </div>
+        <div class="contact-line">Alexandria, Egypt · slimesalah30@gmail.com · 01201024512</div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© <span id="year"></span> Seleem Salah Mohamed. Built with code & curiosity.</p>
+  </footer>
+
+  <div class="modal" id="modal" aria-hidden="true">
+    <div class="modal-backdrop" data-close="true"></div>
+    <div class="modal-dialog glass-card">
+      <button class="modal-close" id="modalClose" aria-label="Close">×</button>
+      <span class="section-kicker" id="modalKicker">DETAIL</span>
+      <h3 id="modalTitle"></h3>
+      <p id="modalDescription"></p>
+      <div class="modal-info-grid">
+        <div><small>ROLE</small><strong id="modalRole"></strong></div>
+        <div><small>TECH STACK</small><strong id="modalStack"></strong></div>
+      </div>
+      <div class="modal-block">
+        <small>KEY CONTRIBUTIONS & ARCHITECTURE</small>
+        <p id="modalArchitecture"></p>
+      </div>
+      <div class="modal-block">
+        <small>TECHNICAL CHALLENGE OVERCOME</small>
+        <p id="modalChallenge"></p>
+      </div>
+      <div class="tag-row" id="modalTags"></div>
+    </div>
+  </div>
+
+  <script>
+const root = document.documentElement;
+const themeToggle = document.getElementById("themeToggle");
+const themeIcon = document.getElementById("themeIcon");
+const menuToggle = document.getElementById("menuToggle");
+const mainNav = document.getElementById("mainNav");
+const progress = document.getElementById("scrollProgress");
+
+function setTheme(mode) {
+  root.classList.toggle("light", mode === "light");
+  themeIcon.textContent = mode === "light" ? "☀" : "☾";
+  localStorage.setItem("portfolio-theme", mode);
+}
+setTheme(localStorage.getItem("portfolio-theme") || "dark");
+
+themeToggle.addEventListener("click", () => {
+  setTheme(root.classList.contains("light") ? "dark" : "light");
+});
+
+menuToggle.addEventListener("click", () => {
+  const open = mainNav.classList.toggle("open");
+  menuToggle.setAttribute("aria-expanded", open);
+});
+mainNav.querySelectorAll("a").forEach(link => {
+  link.addEventListener("click", () => {
+    mainNav.classList.remove("open");
+    menuToggle.setAttribute("aria-expanded", "false");
+  });
+});
+
+const roles = [
+  "Software Developer",
+  "AI Automation Specialist",
+  "Game Development Specialist",
+  "Computer Science Student"
+];
+const typingTarget = document.getElementById("typingTarget");
+let roleIndex = 0, charIndex = 0, deleting = false;
+
+function typeLoop() {
+  const current = roles[roleIndex];
+  typingTarget.textContent = current.slice(0, charIndex);
+
+  if (!deleting && charIndex < current.length) {
+    charIndex++;
+    setTimeout(typeLoop, 75);
+  } else if (!deleting && charIndex === current.length) {
+    deleting = true;
+    setTimeout(typeLoop, 1200);
+  } else if (deleting && charIndex > 0) {
+    charIndex--;
+    setTimeout(typeLoop, 38);
+  } else {
+    deleting = false;
+    roleIndex = (roleIndex + 1) % roles.length;
+    setTimeout(typeLoop, 250);
+  }
+}
+typeLoop();
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add("visible");
+  });
+}, { threshold: .12 });
+document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+
+const sections = [...document.querySelectorAll("main section[id]")];
+const navLinks = [...document.querySelectorAll(".nav a")];
+
+function updateScrollUI() {
+  const scrollTop = window.scrollY;
+  const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+  progress.style.width = (scrollTop / Math.max(scrollable, 1) * 100) + "%";
+
+  let activeId = "home";
+  sections.forEach(section => {
+    const top = section.offsetTop - 130;
+    if (scrollTop >= top) activeId = section.id;
+  });
+  navLinks.forEach(a => a.classList.toggle("active", a.getAttribute("href") === "#" + activeId));
+}
+window.addEventListener("scroll", updateScrollUI, { passive: true });
+window.addEventListener("resize", updateScrollUI);
+updateScrollUI();
+
+const modal = document.getElementById("modal");
+const modalClose = document.getElementById("modalClose");
+const modalTitle = document.getElementById("modalTitle");
+const modalDescription = document.getElementById("modalDescription");
+const modalTags = document.getElementById("modalTags");
+const modalKicker = document.getElementById("modalKicker");
+
+function openModal(title, description, tags = "", kicker = "DETAIL") {
+  modalTitle.textContent = title;
+  modalDescription.textContent = description;
+  modalKicker.textContent = kicker;
+  modalTags.innerHTML = "";
+  tags.split(",").map(t => t.trim()).filter(Boolean).forEach(tag => {
+    const chip = document.createElement("span");
+    chip.textContent = tag;
+    modalTags.appendChild(chip);
+  });
+  modal.classList.add("open");
+  modal.setAttribute("aria-hidden", "false");
+  document.body.style.overflow = "hidden";
+}
+
+function closeModal() {
+  modal.classList.remove("open");
+  modal.setAttribute("aria-hidden", "true");
+  document.body.style.overflow = "";
+}
+
+document.querySelectorAll(".service-open").forEach(btn => {
+  btn.addEventListener("click", e => {
+    const service = e.currentTarget.closest(".service");
+    const data = {
+      game: ["Game Development", "Unity-based 2D/3D development with gameplay logic organized around Finite State Machines.", "Unity, 2D, 3D, FSM"],
+      automation: ["AI Workflow Automation", "Design AI-assisted workflows and automate repetitive business tasks using tools such as n8n.", "AI, n8n, Workflows"],
+      mobile: ["Mobile App Development", "Build mobile applications with an academic foundation in mobile application development.", "Mobile, Software Development"],
+      database: ["Database Solutions", "Support data-driven applications through database management and large-scale database knowledge.", "Databases, Data"]
+    }[service.dataset.service];
+    openModal(data[0], data[1], data[2], "SERVICE");
+  });
+});
+
+document.querySelectorAll(".project-open").forEach(btn => {
+  btn.addEventListener("click", e => {
+    const b = e.currentTarget;
+    modalTitle.textContent = b.dataset.title || "";
+    modalDescription.textContent = b.dataset.description || "";
+    modalKicker.textContent = b.dataset.kicker || "PROJECT";
+    document.getElementById("modalRole").textContent = b.dataset.role || "—";
+    document.getElementById("modalStack").textContent = b.dataset.stack || "—";
+    document.getElementById("modalArchitecture").textContent = b.dataset.architecture || "—";
+    document.getElementById("modalChallenge").textContent = b.dataset.challenge || "—";
+    modalTags.innerHTML = "";
+    (b.dataset.stack || "").split(",").map(t => t.trim()).filter(Boolean).forEach(tag => {
+      const chip = document.createElement("span");
+      chip.textContent = tag;
+      modalTags.appendChild(chip);
+    });
+    modal.classList.add("open");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+  });
+});
+
+document.querySelectorAll("[data-close='true']").forEach(el => el.addEventListener("click", closeModal));
+modalClose.addEventListener("click", closeModal);
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape") closeModal();
+});
+
+document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
